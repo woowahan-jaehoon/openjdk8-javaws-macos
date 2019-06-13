@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+READLINK=$(dirname "$(readlink "$0")")
+if [[ "$READLINK" = "." ]]; then
+    SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+else
+    SCRIPT_DIR=$(cd "$(dirname "$0")" && cd "$READLINK" && pwd)
+fi
+
+java -cp ${SCRIPT_DIR}/../lib/netx.jar net.sourceforge.jnlp.runtime.Boot -Xnofork $@
