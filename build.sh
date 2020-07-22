@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+export LANG=en_US.UTF8
+set -e
+set -u
+set -o pipefail
+
+
 SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 if [[ ! -d ${SCRIPT_DIR}/lib ]]; then
@@ -25,7 +31,7 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo Unpacking...
-tar xfz ${filename}
+ar -x ${filename}
 tar xfz data.tar.xz
 cp ./usr/share/icedtea-web/netx.jar ${SCRIPT_DIR}/lib
 
